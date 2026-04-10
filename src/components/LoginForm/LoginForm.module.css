@@ -42,3 +42,11 @@
   border: none;
   color: rgb(139, 219, 59);
 }
+
+.validInput {
+  background-color: lawngreen;
+}
+
+.invalidInput {
+  background-color: lightcoral;
+}

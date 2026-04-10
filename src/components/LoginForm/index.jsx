@@ -1,5 +1,11 @@
 import { useState } from "react";
 import styles from "./LoginForm.module.css";
+import classNames from "classnames";
+
+const LOGIN_FOR_REG_EXP = {
+  email: /^.+@.+$/,
+  password: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*[\d]).{8,32}$/,
+};
 
 function LoginForm() {
   const [name, setName] = useState("");
@@ -24,6 +30,11 @@ function LoginForm() {
     setEmail("");
     setPassword("");
   };
+
+  const inputPasswordClaassName = classNames(styles.formInput, {
+    [styles.validInput]: LOGIN_FOR_REG_EXP.password.test(password),
+    [styles.invalidInput]: !LOGIN_FOR_REG_EXP.password.test(password),
+  });
 
   return (
     <div className={styles.containerForm}>
@@ -56,7 +67,7 @@ function LoginForm() {
         <label className={styles.labelForm}>
           <span className={styles.inputCaption}>Password:</span>
           <input
-            className={styles.formInput}
+            className={inputPasswordClaassName}
             type="password"
             email="password"
             value={password}
