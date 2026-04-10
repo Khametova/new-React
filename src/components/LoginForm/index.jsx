@@ -26,12 +26,13 @@ function LoginForm() {
   };
 
   return (
-    <div>
-      <h1>LoginForm</h1>
-      <form onSubmit={handleFormSubmint}>
-        <label>
-          <span>Name:</span>
+    <div className={styles.containerForm}>
+      <h1 className={styles.titleForm}>LoginForm</h1>
+      <form className={styles.loginForm} onSubmit={handleFormSubmint}>
+        <label className={styles.labelForm}>
+          <span className={styles.inputCaption}>Name:</span>
           <input
+            className={styles.formInput}
             type="name"
             name="name"
             value={name}
@@ -40,9 +41,10 @@ function LoginForm() {
             autoFocus
           />
         </label>
-        <label>
-          <span>Email:</span>
+        <label className={styles.labelForm}>
+          <span className={styles.inputCaption}>Email:</span>
           <input
+            className={styles.formInput}
             type="email"
             email="email"
             value={email}
@@ -51,9 +53,10 @@ function LoginForm() {
             autoFocus
           />
         </label>
-        <label>
-          <span>Password:</span>
+        <label className={styles.labelForm}>
+          <span className={styles.inputCaption}>Password:</span>
           <input
+            className={styles.formInput}
             type="password"
             email="password"
             value={password}
@@ -62,7 +65,9 @@ function LoginForm() {
             autoFocus
           />
         </label>
-        <button type="submit">Sign Up</button>
+        <button className={styles.subminBtn} type="submit">
+          Sign Up
+        </button>
       </form>
     </div>
   );

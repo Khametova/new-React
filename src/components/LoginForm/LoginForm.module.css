@@ -1,0 +1,44 @@
+.containerForm {
+  max-width: 800px;
+  min-width: 200px;
+  width: 100%;
+  margin: 20px auto;
+  box-shadow: 0 0 10px lightgreen;
+  padding: 10px;
+}
+
+.titleForm {
+  font-size: 2rem;
+  text-align: center;
+  color: rgb(125, 212, 38);
+  margin: 5px auto;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.labelForm {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.inputCaption {
+  flex: 0 1 150px;
+}
+
+.formInput {
+  flex: 2 1 300px;
+  padding: 10px;
+}
+
+.subminBtn {
+  align-self: center;
+  padding: 10px 20px;
+  border: none;
+  color: rgb(139, 219, 59);
+}
