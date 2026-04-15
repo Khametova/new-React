@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import styles from "./Weather.module.css";
 const WEATHER_API =
   "https://api.open-meteo.com/v1/forecast?latitude=47.8517&longitude=35.1171&daily=temperature_2m_max,temperature_2m_min,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,sunrise,rain_sum";
 
@@ -14,7 +14,7 @@ function Weather() {
   }, []);
 
   return (
-    <table>
+    <table className={styles.containerWeather}>
       <caption>weather</caption>
       <thead>
         <tr>
