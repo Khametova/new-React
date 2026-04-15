@@ -5,47 +5,67 @@ const WEATHER_API =
 
 function Weather() {
   const [weather, setWeather] = useState(null);
+  const [tempratureUnit, setTemperatureUnit] = useState("celsius");
+
+  const changeTemperatureUnit = () => {
+    if (tempratureUnit === "celsius") {
+      setTemperatureUnit("fahrenheit");
+    } else {
+      setTemperatureUnit("celsius");
+    }
+  };
 
   useEffect(() => {
-    fetch(WEATHER_API)
+    fetch(`${WEATHER_API}&temperature_unit=${tempratureUnit}`)
       .then((response) => response.json())
       .then((data) => setWeather(data))
       .catch((e) => console.log("e", e));
-  }, []);
+  }, [tempratureUnit]);
 
   return (
-    <table className={styles.containerWeather}>
-      <caption>weather</caption>
-      <thead>
-        <tr>
-          {weather?.daily?.time.map((t) => (
-            <th key={t}>{t}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          {weather?.daily?.temperature_2m_max.map((tempmax, index) => (
-            <td key={index}>{tempmax}</td>
-          ))}
-        </tr>
-        <tr>
-          {weather?.daily?.temperature_2m_min.map((tempmin, index) => (
-            <td key={index}>{tempmin}</td>
-          ))}
-        </tr>
-        <tr>
-          {weather?.daily?.wind_speed_10m_max.map((windspeed, index) => (
-            <td key={index}>{windspeed}</td>
-          ))}
-        </tr>
-        <tr>
-          {weather?.daily?.wind_gusts_10m_max.map((windgusts, index) => (
-            <td key={index}>{windgusts}</td>
-          ))}
-        </tr>
-      </tbody>
-    </table>
+    <>
+      <button onClick={changeTemperatureUnit}>{tempratureUnit}</button>
+      <table className={styles.containerWeather}>
+        <caption>weather</caption>
+        <thead>
+          <tr>
+            {weather?.daily?.time.map((t) => (
+              <th key={t}>{t}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {weather?.daily?.temperature_2m_max.map((tempmax, index) => (
+              <td key={index}>
+                {tempmax} {weather?.daily_units?.temperature_2m_max}
+              </td>
+            ))}
+          </tr>
+          <tr>
+            {weather?.daily?.temperature_2m_min.map((tempmin, index) => (
+              <td key={index}>
+                {tempmin} {weather?.daily_units?.temperature_2m_min}
+              </td>
+            ))}
+          </tr>
+          <tr>
+            {weather?.daily?.wind_speed_10m_max.map((windspeed, index) => (
+              <td key={index}>
+                {windspeed} {weather?.daily_units?.wind_speed_10m_max}
+              </td>
+            ))}
+          </tr>
+          <tr>
+            {weather?.daily?.wind_gusts_10m_max.map((windgusts, index) => (
+              <td key={index}>
+                {windgusts} {weather?.daily_units?.wind_gusts_10m_max}
+              </td>
+            ))}
+          </tr>
+        </tbody>
+      </table>
+    </>
   );
 }
 
