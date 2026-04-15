@@ -6,6 +6,7 @@ const WEATHER_API =
 function Weather() {
   const [weather, setWeather] = useState(null);
   const [tempratureUnit, setTemperatureUnit] = useState("celsius");
+  const [windSpeedUnit, setWindSpeedUnit] = useState("kmh");
 
   const changeTemperatureUnit = () => {
     if (tempratureUnit === "celsius") {
@@ -15,16 +16,27 @@ function Weather() {
     }
   };
 
+  const changeWindSpeedUnit = () => {
+    if (windSpeedUnit === "kmh") {
+      setWindSpeedUnit("ms");
+    } else {
+      setWindSpeedUnit("kmh");
+    }
+  };
+
   useEffect(() => {
-    fetch(`${WEATHER_API}&temperature_unit=${tempratureUnit}`)
+    fetch(
+      `${WEATHER_API}&temperature_unit=${tempratureUnit}&wind_speed_unit=${windSpeedUnit}`,
+    )
       .then((response) => response.json())
       .then((data) => setWeather(data))
       .catch((e) => console.log("e", e));
-  }, [tempratureUnit]);
+  }, [tempratureUnit, windSpeedUnit]);
 
   return (
     <>
       <button onClick={changeTemperatureUnit}>{tempratureUnit}</button>
+      <button onClick={changeWindSpeedUnit}>{windSpeedUnit}</button>
       <table className={styles.containerWeather}>
         <caption>weather</caption>
         <thead>
