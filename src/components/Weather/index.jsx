@@ -25,19 +25,24 @@ function Weather() {
       </thead>
       <tbody>
         <tr>
-          {weather?.daily?.temperature_2m_max.map((tempmax) => {
-            <td key={index}>{tempmax}</td>;
-          })}
+          {weather?.daily?.temperature_2m_max.map((tempmax, index) => (
+            <td key={index}>{tempmax}</td>
+          ))}
         </tr>
         <tr>
-          {weather?.daily?.temperature_2m_min.map((tempmin) => {
-            <td key={index}>{tempmin}</td>;
-          })}
+          {weather?.daily?.temperature_2m_min.map((tempmin, index) => (
+            <td key={index}>{tempmin}</td>
+          ))}
         </tr>
         <tr>
-          {weather?.daily?.sunrise.map((sun) => {
-            <td key={index}>{sun}</td>;
-          })}
+          {weather?.daily?.wind_speed_10m_max.map((windspeed, index) => (
+            <td key={index}>{windspeed}</td>
+          ))}
+        </tr>
+        <tr>
+          {weather?.daily?.wind_gusts_10m_max.map((windgusts, index) => (
+            <td key={index}>{windgusts}</td>
+          ))}
         </tr>
       </tbody>
     </table>
