@@ -38,45 +38,61 @@ function Weather() {
 
   return (
     <>
-      <FaArrowTrendDown />
-      <FaArrowTrendUp />
       <button onClick={changeTemperatureUnit}>{tempratureUnit}</button>
       <button onClick={changeWindSpeedUnit}>{windSpeedUnit}</button>
       <table className={styles.containerWeather}>
-        <caption>weather</caption>
+        <caption className={styles.titleWeather}>weather</caption>
         <thead>
-          <tr>
+          <tr className={styles.listGroop}>
             {weather?.daily?.time.map((t) => (
               <th key={t}>{t}</th>
             ))}
           </tr>
         </thead>
-        <tbody>
-          <tr>
+        <tbody className={styles.bodyWeather}>
+          <tr className={styles.listGroop}>
             {weather?.daily?.temperature_2m_max.map((tempmax, index) => (
               <td key={index}>
                 {tempmax} {weather?.daily_units?.temperature_2m_max}
               </td>
             ))}
           </tr>
-          <tr>
+          <tr className={styles.listGroop}>
             {weather?.daily?.temperature_2m_min.map((tempmin, index) => (
               <td key={index}>
                 {tempmin} {weather?.daily_units?.temperature_2m_min}
               </td>
             ))}
           </tr>
-          <tr>
+          <tr className={styles.listGroop}>
             {weather?.daily?.wind_speed_10m_max.map((windspeed, index) => (
               <td key={index}>
-                {windspeed} {weather?.daily_units?.wind_speed_10m_max}
+                {windspeed}
+                {weather?.daily_units?.wind_speed_10m_max}
               </td>
             ))}
           </tr>
-          <tr>
+          <tr className={styles.listGroop}>
+            {weather?.daily?.wind_speed_10m_max.map((windspeed, index) => (
+              <td key={index}>
+                {windspeed < 20 ? <FaArrowTrendDown /> : ""}
+                {weather?.daily_units?.wind_speed_10m_max}
+              </td>
+            ))}
+          </tr>
+          <tr className={styles.listGroop}>
             {weather?.daily?.wind_gusts_10m_max.map((windgusts, index) => (
               <td key={index}>
-                {windgusts} {weather?.daily_units?.wind_gusts_10m_max}
+                {windgusts}
+                {weather?.daily_units?.wind_gusts_10m_max}
+              </td>
+            ))}
+          </tr>
+          <tr className={styles.listGroop}>
+            {weather?.daily?.wind_gusts_10m_max.map((windgusts, index) => (
+              <td key={index}>
+                {windgusts > 20 ? <FaArrowTrendUp /> : ""}
+                {weather?.daily_units?.wind_gusts_10m_max}
               </td>
             ))}
           </tr>
